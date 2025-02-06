@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, use } from 'react'
 import Script from 'next/script'
 // import { useSession } from 'next-auth/react'
 import { fetchuser, fetchpayments, initiate } from '@/actions/useractions'
@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Flip } from 'react-toastify'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 
 const PaymentPage = ({ username }) => {
@@ -24,42 +25,16 @@ const PaymentPage = ({ username }) => {
     const isDisabled = paymentform.name.length < 3 || paymentform.message.length < 2;
     const router = useRouter()
 
-
-    useEffect(() => {
-        getData()
-    }, [])
-
-    useEffect(() => {
-        if (searchParams.get("paymentdone") == "true") {
-            toast.success('Thanks for your Donation', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                transition: Flip,
-                });
-        }
-        router.push(`/${username}`)
-
-
-    }, [])
-
-
-
     const handleChange = (e) => {
         setPaymentform({ ...paymentform, [e.target.name]: e.target.value })
     }
 
-    const getData = async () => {
+    const getData = useCallback(async () => {
         let u = await fetchuser(username)
         setCurrentuser(u)
         let dbpayments = await fetchpayments(username)
         setPayments(dbpayments)
-    }
+    }, [username])
 
     const pay = async (amount) => {
         //get the order id
@@ -92,7 +67,30 @@ const PaymentPage = ({ username }) => {
         rzp1.open();
     }
 
-    
+
+    useEffect(() => {
+        getData()
+    }, [getData])
+
+    useEffect(() => {
+        if (searchParams.get("paymentdone") == "true") {
+            toast.success('Thanks for your Donation', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Flip,
+            });
+        }
+        router.push(`/${username}`)
+
+
+    }, [router, searchParams, username])
+
 
     return (
         <>
@@ -116,9 +114,9 @@ const PaymentPage = ({ username }) => {
 
 
             <div className='cover w-full bg-red-50 relative'>
-                <img className='object-cover w-full md:h-[350px]' src={currentuser.coverpic} alt="coverpic" />
+                <Image className='object-cover w-full md:h-[350px]' src={currentuser.coverpic} alt="coverpic" />
                 <div className='absolute profile-center bottom-[-3rem] overflow-hidden'>
-                    <img width={100} height={100} className='rounded-3xl border-4 border-red-300 object-cover size-28' src={currentuser.profilepic} alt="profilepic" />
+                    <Image width={100} height={100} className='rounded-3xl border-4 border-red-300 object-cover size-28' src={currentuser.profilepic} alt="profilepic" />
                 </div>
             </div>
             <div className='info flex flex-col justify-center items-center gap-3 my-16'>
@@ -132,7 +130,7 @@ const PaymentPage = ({ username }) => {
                         <ul className='mx-4 my-2'>
                             {payments.length == 0 && <li>No Payments yet</li>}
                             {payments.map((p, i) => {
-                                return <li key={i} className='my-2' > {p.name} donated < span className='font-bold' >₹{p.amount}</span> with a message: "{p.message}"</li>
+                                return <li key={i} className='my-2' > {p.name} donated < span className='font-bold' >₹{p.amount}</span> with a message: &quot;{p.message}&quot;</li>
                             })}
 
                         </ul>

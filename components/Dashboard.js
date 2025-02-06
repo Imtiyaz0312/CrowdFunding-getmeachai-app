@@ -1,11 +1,12 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/navigation'
 import { fetchuser, updateProfile } from '@/actions/useractions'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Flip } from 'react-toastify'
+import { get } from 'mongoose'
 
 const Dashboard = () => {
     const { data: session, update } = useSession()
@@ -13,19 +14,12 @@ const Dashboard = () => {
     const [form, setform] = useState({})
 
 
-    useEffect(() => {
-        if (!session) {
-            router.push('/login')
-        }
-        if(session)
-            getData()
-
-    }, [router, session])
-
-    const getData = async () => {
+    const getData = useCallback(async () => {
+        if (!session?.user?.name)
+            return
         let u = await fetchuser(session.user.name)
         setform(u)
-    }
+    }, [session?.user?.name])
 
     const handleChange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })
@@ -46,6 +40,15 @@ const Dashboard = () => {
             transition: Flip,
         });
     }
+
+    useEffect(() => {
+        if (!session) {
+            router.push('/login')
+            return
+        }
+        getData()
+
+    }, [router, session, getData])
     
     return (
         <>

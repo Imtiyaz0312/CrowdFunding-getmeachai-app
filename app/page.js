@@ -1,10 +1,12 @@
 import Link from "next/link";
+import Image from 'next/image';
+
 
 export default function Home() {
 	return (
 		<>
 			<div className="flex justify-center flex-col gap-4 items-center h-[40vh] text-white">
-				<div className="flex items-center gap-4 font-bold text-3xl">Buy Me a Chai <span><img className="w-20 animate-[wiggle_1s_ease-in-out_infinite]" src="icons/tea.png" alt="" /></span></div>
+				<div className="flex items-center gap-4 font-bold text-3xl">Buy Me a Chai <span><Image className="w-20 animate-[wiggle_1s_ease-in-out_infinite]" src="icons/tea.png" alt="Tea Image" /></span></div>
 				<p className="py-2 px-5 text-center">A crowdfunding platform for creators. Get funded by your fans and followers. Start Now!</p>
 				<div>
 					<Link href={"/login"}>
@@ -31,19 +33,19 @@ export default function Home() {
 				<div className="flex flex-col justify-around items-center w-full gap-5">
 
 					<div className="item space-y-3 flex flex-col items-center">
-						<div className=" bg-slate-600 rounded-full p-6"><img className="w-32" src="/icons/man.png" alt="" /></div>
+						<div className=" bg-slate-600 rounded-full p-6"><Image className="w-32" src="/icons/man.png" alt="" /></div>
 						<p className="w-2/3 text-center font-semibold">Fund Yourself</p>
 						<p className="w-2/3 text-center">Your fans are available for you to help you</p>
 					</div>
 
 					<div className="item space-y-3 flex flex-col items-center">
-						<div className=" bg-slate-600 rounded-full p-6"><img className="w-32" src="/icons/coin.png" alt="" /></div>
+						<div className=" bg-slate-600 rounded-full p-6"><Image className="w-32" src="/icons/coin.png" alt="" /></div>
 						<p className="w-2/3 text-center font-semibold">Fund Yourself</p>
 						<p className="w-2/3 text-center"> Your fans are available for you to help you</p>
 					</div>
 
 					<div className="item space-y-3 flex flex-col items-center">
-						<div className=" bg-slate-600 rounded-full p-6"><img className="w-32" src="/icons/fund.png" alt="" /></div>
+						<div className=" bg-slate-600 rounded-full p-6"><Image className="w-32" src="/icons/fund.png" alt="" /></div>
 						<p className="w-2/3 text-center font-semibold">Fans want to Help</p>
 						<p className="w-2/3 text-center">Your fans are available for you to help you</p>
 					</div>
@@ -57,19 +59,19 @@ export default function Home() {
 				<div className="flex flex-col justify-around items-center w-full gap-5">
 
 					<div className="item space-y-3 flex flex-col items-center">
-						<div className=" bg-slate-600 rounded-full p-6"><img className="w-32" src="/icons/man.png" alt="" /></div>
+						<div className=" bg-slate-600 rounded-full p-6"><Image className="w-32" src="/icons/man.png" alt="" /></div>
 						<p className="w-2/3 text-center font-semibold">Fund Yourself</p>
 						<p className="w-2/3 text-center">Your fans are available for you to help you</p>
 					</div>
 
 					<div className="item space-y-3 flex flex-col items-center">
-						<div className=" bg-slate-600 rounded-full p-6"><img className="w-32" src="/icons/coin.png" alt="" /></div>
+						<div className=" bg-slate-600 rounded-full p-6"><Image className="w-32" src="/icons/coin.png" alt="" /></div>
 						<p className="w-2/3 text-center font-semibold">Fund Yourself</p>
 						<p className="w-2/3 text-center"> Your fans are available for you to help you</p>
 					</div>
 
 					<div className="item space-y-3 flex flex-col items-center">
-						<div className=" bg-slate-600 rounded-full p-6"><img className="w-32" src="/icons/fund.png" alt="" /></div>
+						<div className=" bg-slate-600 rounded-full p-6"><Image className="w-32" src="/icons/fund.png" alt="" /></div>
 						<p className="w-2/3 text-center font-semibold">Fans want to Help</p>
 						<p className="w-2/3 text-center">Your fans are available for you to help you</p>
 					</div>
