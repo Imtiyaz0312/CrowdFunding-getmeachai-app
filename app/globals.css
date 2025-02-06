@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+    --profile-right: calc(50vw - 50px);
+}
+
+.profile-center {
+    right: var(--profile-right);
+}
