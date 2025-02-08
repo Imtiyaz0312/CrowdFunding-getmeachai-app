@@ -11,7 +11,6 @@ export const authoptions = NextAuth({
         GitHubProvider({
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,
-            redirectUri: process.env.NEXT_PUBLIC_URL + '/api/auth/callback/github'
         }),
     ],
     callbacks: {
