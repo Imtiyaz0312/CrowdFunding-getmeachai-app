@@ -3,10 +3,3 @@
     { "source": "/api/auth/:path*", "destination": "/api/auth/:path*" }
   ]
 }
-{
-  "functions": {
-    "api/auth/*": {
-      "maxDuration": 30
-    }
-  }
-}
