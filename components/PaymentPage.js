@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect, use } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Script from 'next/script'
 // import { useSession } from 'next-auth/react'
 import { fetchuser, fetchpayments, initiate } from '@/actions/useractions'
@@ -8,7 +8,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Flip } from 'react-toastify'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
 
 
 const PaymentPage = ({ username }) => {
@@ -114,9 +113,9 @@ const PaymentPage = ({ username }) => {
 
 
             <div className='cover w-full bg-red-50 relative'>
-                <Image className='object-cover w-full md:h-[350px]' src={currentuser.coverpic} alt="coverpic" />
+                <img className='object-cover w-full md:h-[350px]' src={currentuser.coverpic} alt="coverpic" />
                 <div className='absolute profile-center bottom-[-3rem] overflow-hidden'>
-                    <Image width={100} height={100} className='rounded-3xl border-4 border-red-300 object-cover size-28' src={currentuser.profilepic} alt="profilepic" />
+                    <img className='rounded-3xl border-4 border-red-300 object-cover size-28' src={currentuser.profilepic} alt="profilepic" />
                 </div>
             </div>
             <div className='info flex flex-col justify-center items-center gap-3 my-16'>
