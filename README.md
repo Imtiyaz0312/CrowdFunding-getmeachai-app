@@ -54,7 +54,7 @@ Fans can purchase chai for you, providing direct financial support to fund your 
 
 We are always looking to improve **Get Me a Chai**. If you have suggestions or want to contribute, feel free to open an issue or pull request on this repository.  
 
-📩 For feedback or inquiries, contact us at **[your email or website link]**  
+📩 For feedback or inquiries, contact us at **imtiyazahmedraza7860@gmail.com**  
 
 💖 If you like this project, consider **supporting us with a chai!** ☕  
 
